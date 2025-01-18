@@ -16,9 +16,21 @@ Sistema de gestión de terminales de buses que permite controlar el acceso, asig
 git clone https://github.com/ManuArteaga2/Certificaci-n.git
 cd Certificaci-n
 
+### 2. Crear y activar un entorno virtual
+```bash
+python -m venv env
+source env/bin/activate  # Unix/Mac
+env\Scripts\activate     # Windows
+
+### 3. Instalar las Dependencias:
+pip install -r requirements.txt
+
 ### Acceso al panel de administración de Django
 - Usuario: adminterminal
 - Contraseña: Passadmin123
 Operador
 - Usuario: belkis
 - Contraseña: manuela0902
+
+### 4. Para generar el dump en postgres
+pg_dump -U terminal_user -d terminales_db -F c -b -v -f terminales_db
