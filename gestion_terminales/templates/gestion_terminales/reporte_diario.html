@@ -1,0 +1,33 @@
+{% extends "gestion_terminales/base.html" %}
+{% block title %}Reporte Diario{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Reporte Diario de Entradas y Salidas de Buses</h1>
+    {% if es_admin %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Patente</th>
+                    <th>Hora de Llegada</th>
+                    <th>Hora de Salida</th>
+                    <th>Empresa</th>
+                    <th>Andén</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bus in buses %}
+                    <tr>
+                        <td>{{ bus.numero_placa }}</td>
+                        <td>{{ bus.hora_llegada }}</td>
+                        <td>{{ bus.hora_salida }}</td>
+                        <td>{{ bus.empresa.nombre }}</td>
+                        <td>{{ bus.anden.numero }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No tiene permiso para ver este reporte.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "gestion_terminales/base.html" %}
+{% block title %}Gestión de Buses{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Gestión de Buses</h1>
+    <form method="GET" action="{% url 'gestion_terminales:gestion_buses' %}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="nro_placa" placeholder="Buscar por número de placa" value="{{ request.GET.nro_placa|default:'' }}">
+            <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="{{ request.GET.empresa|default:'' }}">
+            <input type="text" class="form-control" name="estado" placeholder="Estado" value="{{ request.GET.estado|default:'' }}">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <a href="{% url 'gestion_terminales:registrar_bus' %}" class="btn btn-success mb-3">Registrar Nuevo Bus</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Número de Placa</th>
+                <th>Empresa</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bus in buses %}
+            <tr>
+                <td>{{ bus.numero_placa }}</td>
+                <td>{{ bus.empresa.nombre }}</td>
+                <td>{{ bus.estado }}</td>
+                <td>
+                    <a href="{% url 'gestion_terminales:editar_bus' bus.id %}" class="btn btn-warning">Editar</a>
+                    <a href="{% url 'gestion_terminales:eliminar_bus' bus.id %}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

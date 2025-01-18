@@ -1,0 +1,12 @@
+{% extends "gestion_terminales/base.html" %}
+{% block title %}Lista de Terminales{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Terminales</h1>
+    <ul class="list-group mt-3">
+    {% for terminal in terminales %}
+        <li class="list-group-item">{{ terminal.nombre }} - {{ terminal.ciudad }}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
